@@ -1,0 +1,28 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [
+    "acl_shwapno"
+  ],
+  "homepage": "https://github.com/Roy025/Shwapno#readme",
+  "bugs": {
+    "url": "https://github.com/Roy025/Shwapno/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Roy025/Shwapno.git"
+  },
+  "license": "ISC",
+  "author": "Prapti Roy",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon backend/server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "nodemon": "^3.1.9"
+  }
+}
