@@ -1,13 +1,131 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  font-family: "Indie Flower", sans-serif;
+  background-color: #f4f5f7 !important;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+}
+/* Navbar */
+.bg-color {
+  background-color: rgb(80, 80, 80);
+}
+.txt-color {
+  color: rgb(80, 80, 80);
+}
+.name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.name h3,
+h1,
+h2,
+h4 {
+  font-style: italic !important;
+  font-weight: 500;
+}
+.logo {
+  font-size: 40px;
+}
+.nav-link {
+  color: rgb(220, 220, 220) !important;
+}
+.nav-links a:last-child {
+  border: 2px solid rgb(209, 247, 255);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Register */
+.pic {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  width: 100% !important;
+  height: 100% !important;
+}
+.icon {
+  display: flex;
+  align-items: left;
+  width: 20px;
+  margin: 5px;
+}
+/* Profile */
+.pro-1 {
+  background-color: #f4f5f7;
+}
+.pro-2 {
+  border-radius: 0.5rem;
+}
+.pro-3 {
+  border-top-left-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+}
+.pro-4 {
+  width: 80px;
+}
+
+/* News */
+.blockquote-custom {
+  position: relative;
+  font-size: 1.1rem;
+}
+
+.blockquote-custom-icon {
+  transform: rotate(180deg);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: -25px;
+  left: 50px;
+}
+/* ************ */
+.italic {
+  font-style: italic !important;
+}
+.bold {
+  font-weight: bold !important;
+}
+.image {
+  transform: rotateX(180deg) rotatey(180deg);
+}
+.bg-color1 {
+  background-color: rgb(238, 231, 227);
+}
+
+.center {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+
+.kanban-board {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
+  justify-content: space-around;
+}
+
+.kanban-column {
+  flex: 1;
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.kanban-card {
+  background: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
 }
