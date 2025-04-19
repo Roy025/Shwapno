@@ -20,7 +20,7 @@ This is a full-stack application built with Node.js, Express.js, MongoDB, and Re
   - `PORT=your_port_number`
   - `JWT=your_jwt_secret`
   - `MONGODB_URI=your_mongodb_connection_string`
-- Connect to the MongoDB database in the `npm start` file
+- Connect to the MongoDB database by `npm start` in root file
 - Run `npm start` in the frontend directory
 
 ## Usage
