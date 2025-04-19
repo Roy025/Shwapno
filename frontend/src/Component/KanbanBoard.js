@@ -14,9 +14,7 @@ export default function KanbanBoard({ products: initialProducts = [] }) {
   const [isAddingCategory, setIsAddingCategory] = useState(false);
   const newCategoryInputRef = useRef(null);
 
-  // Update products when initialProducts changes
   useEffect(() => {
-    // Make sure every product has a category, defaulting to "Uncategorized" if none exists
     const productsWithCategories = initialProducts.map((product) => ({
       ...product,
       category: product.category || "Uncategorized",
@@ -24,7 +22,6 @@ export default function KanbanBoard({ products: initialProducts = [] }) {
 
     setProducts(productsWithCategories);
 
-    // Collect any categories from the products that aren't in our categories list
     const productCategories = [
       ...new Set(productsWithCategories.map((p) => p.category)),
     ];
@@ -32,37 +29,30 @@ export default function KanbanBoard({ products: initialProducts = [] }) {
       (cat) => !categories.includes(cat)
     );
 
-    // Add any new categories found in the products
     if (newCategories.length > 0) {
       setCategories((prevCategories) => [...prevCategories, ...newCategories]);
     }
   }, [initialProducts]);
 
-  // Handle drag start
   const handleDragStart = (product) => {
     setDraggedProduct(product);
   };
 
-  // Handle drag over
   const handleDragOver = (e, category) => {
     e.preventDefault();
     setDraggedOver(category);
   };
 
-  // Handle drop
   const handleDrop = (e, targetCategory) => {
     e.preventDefault();
     if (draggedProduct) {
-      // Call updateProductCategory instead of updating state directly
       updateProductCategory(draggedProduct.barcode, targetCategory);
 
-      // Clear drag state
       setDraggedProduct(null);
       setDraggedOver(null);
     }
   };
 
-  // Handle add category
   const handleAddCategory = () => {
     if (newCategory.trim() !== "" && !categories.includes(newCategory.trim())) {
       setCategories([...categories, newCategory.trim()]);
@@ -71,7 +61,6 @@ export default function KanbanBoard({ products: initialProducts = [] }) {
     }
   };
 
-  // Toggle add category input
   const toggleAddCategory = () => {
     setIsAddingCategory(!isAddingCategory);
     if (!isAddingCategory) {
@@ -81,7 +70,6 @@ export default function KanbanBoard({ products: initialProducts = [] }) {
     }
   };
 
-  // Handle keyboard events for category input
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleAddCategory();
@@ -91,15 +79,12 @@ export default function KanbanBoard({ products: initialProducts = [] }) {
     }
   };
 
-  // Update product category in database and local state
   const updateProductCategory = async (barcode, newCategory) => {
     try {
-      // Send update to the backend API
       await axios.put(`http://localhost:3000/api/products/update/${barcode}`, {
         category: newCategory,
       });
 
-      // Update local state
       const updatedProducts = products.map((product) => {
         if (product.barcode === barcode) {
           return { ...product, category: newCategory };
@@ -110,19 +95,15 @@ export default function KanbanBoard({ products: initialProducts = [] }) {
       setProducts(updatedProducts);
     } catch (error) {
       console.error("Error updating product category:", error);
-      // You could add error handling UI here if needed
     }
   };
-  // Makes a touch-friendly version also work
   const handleTouchStart = (e, product) => {
-    // Store touch start position and time on the product object
     const touchInfo = {
       startTime: Date.now(),
       startX: e.touches[0].clientX,
       startY: e.touches[0].clientY,
     };
 
-    // We'll use this to track if this is a drag or just a tap
     setDraggedProduct({ ...product, _touchInfo: touchInfo });
   };
 
@@ -132,7 +113,6 @@ export default function KanbanBoard({ products: initialProducts = [] }) {
     const deltaX = e.touches[0].clientX - draggedProduct._touchInfo.startX;
     const deltaY = e.touches[0].clientY - draggedProduct._touchInfo.startY;
 
-    // If moved more than 10px, consider it a drag
     if (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10) {
       setDraggedOver(category);
       e.preventDefault();
