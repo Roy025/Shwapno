@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Children } from "react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
@@ -31,21 +31,13 @@ export const Login = () => {
             setTimeout(() => {
               navigate("/api/products/inventory");
             }, 1000);
-          } else if (response.status === "400") {
-            toast.error("Invalid credentials");
-          } else if (response.status === "401") {
-            toast.error("Unauthorized access");
-          } else if (response.status === "404") {
-            toast.error("User not found");
-          } else {
-            toast.error(response.status);
           }
         })
         .catch((err) => {
-          toast(err);
+          toast.error(err.response.statusText);
         });
     } catch (err) {
-      toast(err);
+      toast(err.response.statusText);
     }
   };
 

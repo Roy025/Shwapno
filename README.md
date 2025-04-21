@@ -13,15 +13,30 @@ This is a full-stack application built with Node.js, Express.js, MongoDB, and Re
 ## Installation
 
 - Clone the repository
-- Run `npm install` in the root directory
-- Run `npm install` in the frontend directory
-- Create a MongoDB database and add the connection string to the `.env` file
-- Create a `.env` file with the following information:
-  - `PORT=your_port_number`
-  - `JWT=your_jwt_secret`
-  - `MONGODB_URI=your_mongodb_connection_string`
-- Connect to the MongoDB database in the `npm start` file
-- Run `npm start` in the frontend directory
+
+- Run npm install in the root directory
+
+- Run npm install in the frontend directory
+
+- Create a MongoDB database
+
+- In the root directory, create a .env file with:
+
+      PORT=3001 (or match the port in frontend's proxy)
+
+      JWT=your_jwt_secret
+
+      MONGODB_URI=your_mongodb_connection_string
+
+- In frontend/package.json, make sure:
+
+      "proxy": "http://127.0.0.1:3001" (3001 - should be same as .env files PORT value)
+
+- Connect to MongoDB in the backend using process.env.MONGODB_URI
+
+- Run npm start in the root directory to start the backend
+
+- Run npm start in the frontend directory to start the frontend
 
 ## Usage
 

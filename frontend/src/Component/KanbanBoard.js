@@ -2,11 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import axios from "axios";
 
 export default function KanbanBoard({ products: initialProducts = [] }) {
-  const [categories, setCategories] = useState([
-    "Uncategorized",
-    "In Stock",
-    "Sold",
-  ]);
+  const [categories, setCategories] = useState(["Uncategorized"]);
   const [products, setProducts] = useState([]);
   const [newCategory, setNewCategory] = useState("");
   const [draggedProduct, setDraggedProduct] = useState(null);

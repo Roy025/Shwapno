@@ -16,6 +16,10 @@ export const SignUp = () => {
 
   const { name, email, password, confirmpassword } = signupData;
   const signup = async () => {
+    if (password !== confirmpassword) {
+      toast.error("Password and Confirm Password do not match");
+      return;
+    }
     try {
       await axios
         .post("http://localhost:3000/api/users", {
@@ -25,35 +29,26 @@ export const SignUp = () => {
           confirmpassword: confirmpassword,
         })
         .then((response) => {
+          localStorage.setItem("accesstoken", response.data.token);
+          localStorage.setItem("email", response.data.email);
+          console.log(response);
           if (response.data.success === false) {
             toast(response.data.message);
           } else {
-            if (response.data === "USER REGISTERED") {
-              toast(response.data);
+            if (response.status === 201) {
+              toast.success("User registered successfully");
               setTimeout(() => {
-                navigate("/api/users/login");
-              }, 3000);
+                navigate("/api/products/inventory");
+              }, 1000);
             }
           }
         })
         .catch((err) => {
-          toast("err" + err);
-          toast("Error   " + err.request.response);
+          const message = err.response?.data?.message || "Registration failed";
+          toast.error("Error: " + message);
         });
     } catch (err) {
-      if (err.response) {
-        toast(err.response.data);
-        toast(err.response.status);
-        toast(err.response.headers);
-      } else if (err.request) {
-        toast(signupData);
-        toast(signupData.username);
-        toast(err.request);
-        toast(err.response);
-      } else {
-        // Anything else
-        toast("Error", err.message);
-      }
+      toast.error("Something went wrong");
     }
   };
   const handleSubmit = (e) => {
@@ -116,7 +111,7 @@ export const SignUp = () => {
                               required
                               id="email"
                               name="email"
-                              type="text"
+                              type="email"
                               placeholder="E-mail"
                               onChange={handleChange}
                             />
