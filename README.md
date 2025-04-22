@@ -22,7 +22,7 @@ This is a full-stack application built with Node.js, Express.js, MongoDB, and Re
 
 - In the root directory, create a .env file with:
 
-      PORT=3001 (or match the port in frontend's proxy)
+      PORT=5000 (or match the port in frontend's proxy)
 
       JWT=your_jwt_secret
 
@@ -30,7 +30,7 @@ This is a full-stack application built with Node.js, Express.js, MongoDB, and Re
 
 - In frontend/package.json, make sure:
 
-      "proxy": "http://127.0.0.1:3001" (3001 - should be same as .env files PORT value)
+      "proxy": "http://localhost:5000" (5000 - should be same as .env files PORT value)
 
 - Connect to MongoDB in the backend using process.env.MONGODB_URI
 
